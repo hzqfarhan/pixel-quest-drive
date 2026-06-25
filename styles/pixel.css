@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════════════════
+   PIXEL QUEST DRIVE — Global Pixel CSS
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Color Palette ── */
+:root {
+  --pixel-white: #FFFFF0;
+  --pixel-black: #1a1a2e;
+  --pixel-yellow: #FFD700;
+  --pixel-green: #4CAF50;
+  --pixel-blue: #4FC3F7;
+  --pixel-red: #FF5252;
+  --pixel-purple: #CE93D8;
+  --pixel-gray: #B0BEC5;
+  --pixel-orange: #FFB74D;
+  --pixel-shadow: #000000;
+  --pixel-bg: #FFFFF0;
+  --pixel-panel: #FFF8E7;
+  --pixel-border-width: 4px;
+}
+
+/* ── Global Reset ── */
+* {
+  border-radius: 0 !important;
+  image-rendering: pixelated;
+}
+
+*::selection {
+  background: var(--pixel-yellow);
+  color: var(--pixel-black);
+}
+
+body {
+  background-color: var(--pixel-bg);
+  color: var(--pixel-black);
+  overflow-x: hidden;
+}
+
+/* ── Pixel Scrollbar ── */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pixel-black);
+  border: 2px solid var(--pixel-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pixel-yellow);
+  border: 2px solid var(--pixel-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFE44D;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--pixel-black);
+}
+
+/* ── Pixel Border Utility ── */
+.px-border {
+  border: var(--pixel-border-width) solid var(--pixel-black);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+}
+
+/* ── Pixel Button ── */
+.px-btn {
+  border: var(--pixel-border-width) solid var(--pixel-black);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  transition: transform 0.05s, box-shadow 0.05s;
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.px-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--pixel-shadow);
+}
+
+.px-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+}
+
+.px-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+}
+
+/* ── Pixel Card ── */
+.px-card {
+  border: var(--pixel-border-width) solid var(--pixel-black);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  background: var(--pixel-panel);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.px-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--pixel-shadow);
+}
+
+/* ── Pixel Panel ── */
+.px-panel {
+  border: var(--pixel-border-width) solid var(--pixel-black);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  background: var(--pixel-panel);
+}
+
+/* ── Pixel Input ── */
+.px-input {
+  border: 3px solid var(--pixel-black);
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1);
+  background: #fff;
+  padding: 8px 12px;
+  outline: none;
+}
+
+.px-input:focus {
+  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1), 0 0 0 2px var(--pixel-yellow);
+}
+
+/* ══════════════════════════════════════
+   KEYFRAME ANIMATIONS
+   ══════════════════════════════════════ */
+
+/* Coin spin */
+@keyframes pixel-coin-spin {
+  0%   { transform: scaleX(1); }
+  25%  { transform: scaleX(0.1); }
+  50%  { transform: scaleX(1); }
+  75%  { transform: scaleX(0.1); }
+  100% { transform: scaleX(1); }
+}
+
+/* XP float text */
+@keyframes px-xp-pop {
+  0%   { opacity: 1; transform: translateY(0px) scale(1); }
+  50%  { opacity: 0.8; transform: translateY(-20px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-50px) scale(0.8); }
+}
+
+/* Rarity shimmer for EPIC+ */
+@keyframes rarity-shimmer {
+  0%   { box-shadow: 4px 4px 0 var(--pixel-shadow), 0 0 0px var(--shimmer-color, #CE93D8); }
+  50%  { box-shadow: 4px 4px 0 var(--pixel-shadow), 0 0 16px var(--shimmer-color, #CE93D8); }
+  100% { box-shadow: 4px 4px 0 var(--pixel-shadow), 0 0 0px var(--shimmer-color, #CE93D8); }
+}
+
+/* Level up flash */
+@keyframes px-flash {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Chest open */
+@keyframes px-chest-open {
+  0%   { transform: rotateX(0deg); }
+  60%  { transform: rotateX(-110deg); }
+  80%  { transform: rotateX(-95deg); }
+  100% { transform: rotateX(-100deg); }
+}
+
+/* Sprite walk/bob */
+@keyframes px-walk {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Cursor blink */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Achievement slide in */
+@keyframes achievement-slide-in {
+  0%   { transform: translateY(-120%); opacity: 0; }
+  15%  { transform: translateY(4px); opacity: 1; }
+  20%  { transform: translateY(0); }
+  80%  { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120%); opacity: 0; }
+}
+
+/* Screen wipe */
+@keyframes screen-wipe {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+/* Stagger fade in */
+@keyframes stagger-in {
+  0%   { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Typing effect */
+@keyframes typing-cursor {
+  0%, 100% { border-right-color: var(--pixel-yellow); }
+  50%      { border-right-color: transparent; }
+}
+
+/* Progress bar stripe animation */
+@keyframes progress-stripe {
+  0%   { background-position: 0 0; }
+  100% { background-position: 16px 0; }
+}
+
+/* Float up (item pickup) */
+@keyframes px-float-up {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-30px) scale(0.6); }
+}
+
+/* Pulse glow */
+@keyframes px-pulse-glow {
+  0%, 100% { box-shadow: 4px 4px 0 var(--pixel-shadow), 0 0 0px var(--pixel-yellow); }
+  50%      { box-shadow: 4px 4px 0 var(--pixel-shadow), 0 0 12px var(--pixel-yellow); }
+}
+
+/* Sparkle */
+@keyframes px-sparkle {
+  0%   { opacity: 0; transform: scale(0) rotate(0deg); }
+  50%  { opacity: 1; transform: scale(1) rotate(180deg); }
+  100% { opacity: 0; transform: scale(0) rotate(360deg); }
+}
+
+/* Shake */
+@keyframes px-shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-4px); }
+  75%      { transform: translateX(4px); }
+}
+
+/* ── Animation Utility Classes ── */
+.animate-coin-spin {
+  animation: pixel-coin-spin 0.6s ease-in-out;
+}
+
+.animate-xp-pop {
+  animation: px-xp-pop 1.2s ease-out forwards;
+}
+
+.animate-walk {
+  animation: px-walk 0.6s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+.animate-stagger-in {
+  animation: stagger-in 0.4s ease-out both;
+}
+
+.animate-achievement {
+  animation: achievement-slide-in 5s ease-in-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: px-pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: rarity-shimmer 2s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: px-shake 0.3s ease-in-out;
+}
+
+/* ── Rarity Borders ── */
+.rarity-common {
+  border-color: var(--pixel-gray);
+}
+.rarity-uncommon {
+  border-color: var(--pixel-green);
+}
+.rarity-rare {
+  border-color: var(--pixel-blue);
+}
+.rarity-epic {
+  border-color: var(--pixel-purple);
+  animation: rarity-shimmer 2s ease-in-out infinite;
+  --shimmer-color: var(--pixel-purple);
+}
+.rarity-legendary {
+  border-color: var(--pixel-yellow);
+  animation: rarity-shimmer 1.5s ease-in-out infinite;
+  --shimmer-color: var(--pixel-yellow);
+}
+
+/* ── Dithering Pattern ── */
+.px-dither {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
