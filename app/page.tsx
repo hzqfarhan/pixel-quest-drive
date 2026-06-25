@@ -389,10 +389,6 @@ export default function HomePage() {
       >
         <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundImage: "url('/assets/hp/hogwarts-night.png')", opacity: 0.15, backgroundSize: 'cover', backgroundPosition: 'center', imageRendering: 'pixelated' }} />
         
-        {/* New Animated Logo */}
-        <div className="relative z-10 animate-bounce" style={{ animationDuration: '3s' }}>
-          <img src="/logo.png" alt="Hogwarts Drive Logo" width={128} height={128} style={{ imageRendering: 'pixelated', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }} />
-        </div>
 
         <div className="text-[12px] font-pixel text-[var(--text-primary)] tracking-widest z-10 animate-pulse">
           ENTERING VAULTS...

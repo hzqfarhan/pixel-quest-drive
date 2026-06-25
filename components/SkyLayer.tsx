@@ -220,20 +220,25 @@ function BroomRider({ config, src, isNight }: {
       style={{
         position: 'absolute',
         top: config.top,
-        left: 0,
+        left: isRTL ? 'auto' : 0,
+        right: isRTL ? 0 : 'auto',
         width: '32px',
         height: '32px',
-        transform: `scale(${config.scale}) ${isRTL ? 'scaleX(-1)' : ''}`,
-        transformOrigin: 'center center',
-        animation: `broomFly ${config.duration} ${config.delay} linear infinite`,
+        animation: `broomFly${isRTL ? 'RTL' : ''} ${config.duration} ${config.delay} linear infinite`,
         filter: isNight
           ? `drop-shadow(0 0 5px #FFD700) drop-shadow(0 0 10px rgba(255,215,0,0.4))`
           : 'drop-shadow(1px 2px 1px rgba(0,0,0,0.4))',
         imageRendering: 'pixelated',
       }}
     >
-      {/* Sprite sheet animation via background-position cycling */}
-      <BroomSprite src={src} />
+      <div style={{
+        width: '100%', height: '100%',
+        transform: `scale(${config.scale}) ${isRTL ? 'scaleX(-1)' : ''}`,
+        transformOrigin: 'center center',
+      }}>
+        {/* Sprite sheet animation via background-position cycling */}
+        <BroomSprite src={src} />
+      </div>
     </div>
   );
 }

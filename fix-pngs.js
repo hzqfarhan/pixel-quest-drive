@@ -10,11 +10,11 @@ for (const file of files) {
   const filePath = path.join(outDir, file);
   const content = fs.readFileSync(filePath, 'utf8');
   
-  if (content.startsWith('{"image":')) {
+  if (content.startsWith('{')) {
     console.log(`Fixing ${file}...`);
     try {
       const json = JSON.parse(content);
-      const b64 = json.image || json.base64;
+      const b64 = (json.image && json.image.base64) || json.image || json.base64;
       if (b64) {
         const buffer = Buffer.from(b64, 'base64');
         fs.writeFileSync(filePath, buffer);
@@ -33,6 +33,6 @@ for (const file of files) {
       console.error(`Failed to fix ${file}: ${e.message}`);
     }
   } else {
-    // console.log(`File ${file} is already a valid binary or not JSON.`);
+    // Already binary
   }
 }
