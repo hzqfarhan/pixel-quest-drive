@@ -49,6 +49,7 @@ export default function HomePage() {
     playerClass,
     notifications,
     checkAchievements,
+    theme,
   } = useGameStore();
 
   // UI state
@@ -405,8 +406,17 @@ export default function HomePage() {
   }
 
   // Main app
+  const bgImage = theme === 'night' ? "url('/assets/hp/hogwarts-night.png')" : "url('/assets/hp/hogwarts-day.png')";
+
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'var(--pixel-bg)' }}>
+    <div 
+      className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat transition-all duration-1000" 
+      style={{ 
+        backgroundImage: bgImage,
+        backgroundColor: 'var(--pixel-bg)',
+        imageRendering: 'pixelated'
+      }}
+    >
       {/* Level-up overlay */}
       {showLevelUp && (
         <div

@@ -61,9 +61,11 @@ interface GameState {
   initialized: boolean;
   showLevelUp: boolean;
   newLevel: number;
+  theme: 'day' | 'night';
 
   // Actions
   initialize: () => void;
+  setTheme: (theme: 'day' | 'night') => void;
   gainXP: (amount: number, coins?: number, message?: string) => void;
   spendMP: (amount: number) => boolean;
   restoreMP: (amount: number) => void;
@@ -116,6 +118,7 @@ export const useGameStore = create<GameState>()(
       initialized: false,
       showLevelUp: false,
       newLevel: 1,
+      theme: 'day',
 
       initialize: () => {
         const state = get();
@@ -346,6 +349,10 @@ export const useGameStore = create<GameState>()(
         set({ showLevelUp: false });
       },
 
+      setTheme: (theme: 'day' | 'night') => {
+        set({ theme });
+      },
+
       setPlayerName: (name: string) => {
         set({ playerName: name || 'WIZARD' });
       },
@@ -375,6 +382,7 @@ export const useGameStore = create<GameState>()(
         viewedFileIds: state.viewedFileIds,
         achievements: state.achievements,
         initialized: state.initialized,
+        theme: state.theme,
       }),
     }
   )

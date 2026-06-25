@@ -15,7 +15,7 @@ interface TopBarProps {
 export default function TopBar({ onSearchClick }: TopBarProps) {
   const {
     playerName, playerClass, level, currentXP, xpToNext,
-    hp, maxHp, mp, maxMp, coins,
+    hp, maxHp, mp, maxMp, coins, theme, setTheme
   } = useGameStore();
 
   const [soundOn, setSoundOn] = useState(true);
@@ -127,6 +127,15 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
 
         {/* Action buttons */}
         <div className="flex items-center gap-1 ml-auto">
+          {/* Theme toggle */}
+          <button
+            onClick={() => setTheme(theme === 'day' ? 'night' : 'day')}
+            className="px-btn bg-[var(--pixel-panel)] px-2 py-1 text-[10px]"
+            title={theme === 'day' ? 'Switch to Night' : 'Switch to Day'}
+          >
+            {theme === 'day' ? '🌙' : '☀️'}
+          </button>
+
           {/* Search spell button */}
           <button
             onClick={onSearchClick}
