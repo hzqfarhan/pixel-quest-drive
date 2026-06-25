@@ -87,8 +87,8 @@ export const useGameStore = create<GameState>()(
   persist(
     (set, get) => ({
       // Initial State
-      playerName: 'ADVENTURER',
-      playerClass: 'WARRIOR',
+      playerName: 'WIZARD',
+      playerClass: 'GRYFFINDOR',
       level: 1,
       totalXP: 0,
       currentXP: 0,
@@ -347,7 +347,7 @@ export const useGameStore = create<GameState>()(
       },
 
       setPlayerName: (name: string) => {
-        set({ playerName: name || 'ADVENTURER' });
+        set({ playerName: name || 'WIZARD' });
       },
     }),
     {

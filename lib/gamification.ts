@@ -15,19 +15,19 @@ export interface Achievement {
 
 // ── XP Rewards ──
 export const XP_REWARDS = {
-  FIRST_VISIT: { xp: 50, coins: 5, message: 'ADVENTURE BEGINS!' },
-  OPEN_FOLDER: { xp: 25, coins: 3, message: 'DUNGEON ENTERED!' },
-  VIEW_FILE: { xp: 30, coins: 2, message: 'FILE INSPECTED!' },
-  VIEW_IMAGE: { xp: 20, coins: 2, message: 'ARTIFACT DISCOVERED!' },
-  PLAY_VIDEO: { xp: 40, coins: 5, message: 'CUTSCENE UNLOCKED!' },
-  PLAY_AUDIO: { xp: 35, coins: 3, message: 'BARD SONG LEARNED!' },
+  FIRST_VISIT: { xp: 50, coins: 5, message: 'HOGWARTS LETTER RECEIVED!' },
+  OPEN_FOLDER: { xp: 25, coins: 3, message: 'VAULT ENTERED!' },
+  VIEW_FILE: { xp: 30, coins: 2, message: 'RELIC INSPECTED!' },
+  VIEW_IMAGE: { xp: 20, coins: 2, message: 'PORTRAIT DISCOVERED!' },
+  PLAY_VIDEO: { xp: 40, coins: 5, message: 'PENSIEVE MEMORY UNLOCKED!' },
+  PLAY_AUDIO: { xp: 35, coins: 3, message: 'MAGICAL TUNE LEARNED!' },
   DOWNLOAD_FILE: { xp: 50, coins: 10, message: 'ITEM ACQUIRED!' },
-  DOWNLOAD_ZIP: { xp: 100, coins: 25, message: 'TREASURE LOOTED!' },
+  DOWNLOAD_ZIP: { xp: 100, coins: 25, message: 'TRUNK LOOTED!' },
   VIEW_PDF: { xp: 45, coins: 3, message: 'ANCIENT SCROLL READ!' },
-  SEARCH_FOUND: { xp: 60, coins: 5, message: 'RARE ITEM FOUND!' },
-  FOLDER_CLEARED: { xp: 200, coins: 50, message: 'DUNGEON CLEARED!' },
-  INSTALL_PWA: { xp: 500, coins: 100, message: 'PORTAL CREATED!' },
-  FIVE_MINUTES: { xp: 150, coins: 20, message: 'SEASONED EXPLORER!' },
+  SEARCH_FOUND: { xp: 60, coins: 5, message: 'ACCIO SUCCESSFUL!' },
+  FOLDER_CLEARED: { xp: 200, coins: 50, message: 'VAULT CLEARED!' },
+  INSTALL_PWA: { xp: 500, coins: 100, message: 'PORTKEY CREATED!' },
+  FIVE_MINUTES: { xp: 150, coins: 20, message: 'SEASONED WIZARD!' },
 } as const;
 
 // ── Leveling Formula ──
@@ -54,18 +54,18 @@ export function getLevelFromTotalXP(totalXP: number): { level: number; currentXP
 
 // ── Rank Titles ──
 export function getRankTitle(level: number): string {
-  if (level <= 3) return 'NEWBIE SQUIRE';
-  if (level <= 6) return 'FILE SEEKER';
-  if (level <= 10) return 'DUNGEON CRAWLER';
-  if (level <= 15) return 'VAULT GUARDIAN';
-  if (level <= 20) return 'ARCHIVE KNIGHT';
-  if (level <= 30) return 'LORE MASTER';
-  if (level <= 40) return 'LEGENDARY MAGE';
-  return 'PIXEL GOD';
+  if (level <= 3) return 'FIRST YEAR';
+  if (level <= 6) return 'STUDENT WIZARD';
+  if (level <= 10) return 'PREFECT';
+  if (level <= 15) return 'HEAD BOY/GIRL';
+  if (level <= 20) return 'AUROR';
+  if (level <= 30) return 'PROFESSOR';
+  if (level <= 40) return 'HEADMASTER';
+  return 'ORDER OF MERLIN';
 }
 
 // ── Player Classes ──
-export const PLAYER_CLASSES = ['WARRIOR', 'MAGE', 'ROGUE', 'BARD'] as const;
+export const PLAYER_CLASSES = ['GRYFFINDOR', 'RAVENCLAW', 'SLYTHERIN', 'HUFFLEPUFF'] as const;
 export type PlayerClass = typeof PLAYER_CLASSES[number];
 
 export function getRandomClass(): PlayerClass {
@@ -74,10 +74,10 @@ export function getRandomClass(): PlayerClass {
 
 export function getClassColor(cls: PlayerClass): string {
   switch (cls) {
-    case 'WARRIOR': return 'var(--pixel-red)';
-    case 'MAGE': return 'var(--pixel-purple)';
-    case 'ROGUE': return 'var(--pixel-green)';
-    case 'BARD': return 'var(--pixel-yellow)';
+    case 'GRYFFINDOR': return 'var(--pixel-red)';
+    case 'RAVENCLAW': return 'var(--pixel-blue)';
+    case 'SLYTHERIN': return 'var(--pixel-green)';
+    case 'HUFFLEPUFF': return 'var(--pixel-yellow)';
   }
 }
 
@@ -85,15 +85,15 @@ export function getClassColor(cls: PlayerClass): string {
 export const ACHIEVEMENT_DEFS: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = [
   {
     id: 'first_blood',
-    name: 'FIRST BLOOD',
+    name: 'WAND CHOSEN',
     description: 'View your first file',
-    emoji: '🗡️',
+    emoji: '🪄',
     xpReward: 100,
     coinReward: 20,
   },
   {
     id: 'treasure_hunter',
-    name: 'TREASURE HUNTER',
+    name: 'NIFFLER',
     description: 'Download 5 files',
     emoji: '💰',
     xpReward: 250,
@@ -101,23 +101,23 @@ export const ACHIEVEMENT_DEFS: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = 
   },
   {
     id: 'speed_runner',
-    name: 'SPEED RUNNER',
+    name: 'FIREBOLT FLYER',
     description: 'View 10 files in under 5 minutes',
-    emoji: '⚡',
+    emoji: '🧹',
     xpReward: 300,
     coinReward: 40,
   },
   {
     id: 'completionist',
-    name: 'COMPLETIONIST',
+    name: 'MARAUDER',
     description: 'Open every folder',
-    emoji: '🏆',
+    emoji: '📜',
     xpReward: 500,
     coinReward: 100,
   },
   {
     id: 'media_master',
-    name: 'MEDIA MASTER',
+    name: 'PENSIEVE DIVER',
     description: 'Play 3 videos or audio files',
     emoji: '🎬',
     xpReward: 200,
@@ -125,15 +125,15 @@ export const ACHIEVEMENT_DEFS: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = 
   },
   {
     id: 'scroll_keeper',
-    name: 'SCROLL KEEPER',
+    name: 'HERMIONE\'S PRIDE',
     description: 'Read 5 PDFs',
-    emoji: '📜',
+    emoji: '📚',
     xpReward: 200,
     coinReward: 30,
   },
   {
     id: 'mage_path',
-    name: 'MAGE PATH',
+    name: 'SEEKER',
     description: 'Use search 10 times',
     emoji: '🔮',
     xpReward: 150,
@@ -141,15 +141,15 @@ export const ACHIEVEMENT_DEFS: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = 
   },
   {
     id: 'gold_hoarder',
-    name: 'GOLD HOARDER',
-    description: 'Earn 500 gold total',
+    name: 'GRINGOTTS GOBLIN',
+    description: 'Earn 500 galleons total',
     emoji: '🪙',
     xpReward: 300,
     coinReward: 100,
   },
   {
     id: 'speed_loader',
-    name: 'SPEED LOADER',
+    name: 'PORTKEY EXPERT',
     description: 'Install as PWA',
     emoji: '📲',
     xpReward: 500,
@@ -157,15 +157,15 @@ export const ACHIEVEMENT_DEFS: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = 
   },
   {
     id: 'lore_master',
-    name: 'LORE MASTER',
+    name: 'HISTORY OF MAGIC',
     description: 'View 50+ files',
-    emoji: '📚',
+    emoji: '🦉',
     xpReward: 750,
     coinReward: 150,
   },
   {
     id: 'dungeon_boss',
-    name: 'DUNGEON BOSS',
+    name: 'DRAGON TAMER',
     description: 'Download the largest file',
     emoji: '🐉',
     xpReward: 400,
@@ -173,17 +173,17 @@ export const ACHIEVEMENT_DEFS: Omit<Achievement, 'unlocked' | 'unlockedAt'>[] = 
   },
   {
     id: 'night_owl',
-    name: 'NIGHT OWL',
+    name: 'ASTRONOMY TOWER',
     description: 'Visit after 11pm',
-    emoji: '🦉',
+    emoji: '🔭',
     xpReward: 100,
     coinReward: 15,
   },
   {
     id: 'wanderer',
-    name: 'WANDERER',
+    name: 'FORBIDDEN FOREST',
     description: 'Spend 30 minutes exploring',
-    emoji: '🧭',
+    emoji: '🌲',
     xpReward: 500,
     coinReward: 100,
   },

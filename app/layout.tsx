@@ -11,7 +11,7 @@ const pixelFont = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "PIXEL QUEST DRIVE — Gamified File Explorer",
+  title: "HOGWARTS DRIVE — Gamified File Explorer",
   description:
     "A pixel-art RPG-style Google Drive dashboard. Explore files like dungeon loot — earn XP, level up, unlock achievements. No login required.",
   manifest: "/manifest.json",

@@ -59,7 +59,7 @@ export default function HomePage() {
   const [error, setError] = useState<string | undefined>();
   const [currentFolderId, setCurrentFolderId] = useState(ROOT_FOLDER_ID);
   const [folderStack, setFolderStack] = useState<{ id: string; name: string }[]>([
-    { id: ROOT_FOLDER_ID, name: 'ROOT DUNGEON' },
+    { id: ROOT_FOLDER_ID, name: 'HOGWARTS VAULTS' },
   ]);
   const [folderTree, setFolderTree] = useState<FolderItem[]>([]);
   const [previewFile, setPreviewFile] = useState<DriveFile | null>(null);
@@ -68,7 +68,7 @@ export default function HomePage() {
   const [typedTitle, setTypedTitle] = useState('');
   const initialized = useRef(false);
 
-  const fullTitle = 'PIXEL QUEST DRIVE';
+  const fullTitle = 'HOGWARTS DRIVE';
 
   // ── CINEMATIC INTRO ──
   useEffect(() => {
@@ -231,7 +231,7 @@ export default function HomePage() {
       const treeItem = folderTree.find((f) => f.id === folderId);
       navigateToFolder({
         id: folderId,
-        name: treeItem?.name || 'DUNGEON',
+        name: treeItem?.name || 'VAULT',
       });
     },
     [folderTree, navigateToFolder]
@@ -346,7 +346,7 @@ export default function HomePage() {
           <div className="animate-stagger-in flex flex-col items-center gap-3">
             <PixelSprite playerClass={playerClass} size={64} walking />
             <div className="text-[10px] font-pixel text-[var(--pixel-purple)]">
-              CLASS ASSIGNED:
+              THE SORTING HAT HAS DECIDED:
             </div>
             <div
               className="text-[14px] font-pixel font-bold px-panel px-4 py-2"
@@ -380,7 +380,7 @@ export default function HomePage() {
       >
         <PixelSprite playerClass={playerClass} size={48} walking />
         <div className="text-[11px] font-pixel text-[var(--pixel-black)]">
-          ENTERING DUNGEON...
+          ENTERING VAULTS...
         </div>
         <div
           className="w-48 h-4"
@@ -428,7 +428,7 @@ export default function HomePage() {
               LV. {newLevel}
             </div>
             <div className="text-[10px] font-pixel text-[var(--pixel-yellow)] mt-2">
-              +{newLevel * 5} GOLD · HP RESTORED
+              +{newLevel * 5} GALLEONS · HP RESTORED
             </div>
           </div>
         </div>

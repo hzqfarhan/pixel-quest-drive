@@ -74,7 +74,7 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
           <PixelSprite playerClass={playerClass} size={28} />
           <div className="hidden sm:block">
             <div className="text-[10px] font-pixel text-[var(--pixel-black)] flex items-center gap-1">
-              <span className="hidden md:inline">PIXEL QUEST</span>
+              <span className="hidden md:inline">HOGWARTS</span>
               <span className="text-[var(--pixel-yellow)]">DRIVE</span>
               <span className="animate-blink text-[var(--pixel-yellow)]">▮</span>
             </div>
@@ -104,8 +104,8 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
         {/* Bars */}
         <div className="flex-1 flex flex-col gap-1 min-w-[120px] max-w-[280px]">
           <PixelProgressBar label="HP" value={hp} max={maxHp} color="var(--pixel-red)" height={14} />
-          <PixelProgressBar label="XP" value={currentXP} max={xpToNext} color="var(--pixel-yellow)" height={14} />
-          <PixelProgressBar label="MP" value={mp} max={maxMp} color="var(--pixel-blue)" height={10} showText={false} />
+          <PixelProgressBar label="PTS" value={currentXP} max={xpToNext} color="var(--pixel-yellow)" height={14} />
+          <PixelProgressBar label="MANA" value={mp} max={maxMp} color="var(--pixel-blue)" height={10} showText={false} />
         </div>
 
         {/* Coins */}
@@ -127,14 +127,14 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
 
         {/* Action buttons */}
         <div className="flex items-center gap-1 ml-auto">
-          {/* Search button */}
+          {/* Search spell button */}
           <button
             onClick={onSearchClick}
             className="px-btn bg-[var(--pixel-purple)] text-white px-2 py-1 text-[8px] font-pixel flex items-center gap-1"
-            title="Search Spell (5 MP)"
+            title="Revelio Spell (5 MANA)"
           >
             <span>🔮</span>
-            <span className="hidden sm:inline">SEARCH</span>
+            <span className="hidden sm:inline">REVELIO</span>
           </button>
 
           {/* Sound toggle */}

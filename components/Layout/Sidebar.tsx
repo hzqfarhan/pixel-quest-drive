@@ -68,10 +68,10 @@ export default function Sidebar({
             </div>
             <div className="grid grid-cols-2 gap-1 text-[7px] font-pixel">
               <StatRow label="LEVEL" value={level.toString()} />
-              <StatRow label="GOLD" value={coins.toString()} color="var(--pixel-yellow)" />
+              <StatRow label="GALLEONS" value={coins.toString()} color="var(--pixel-yellow)" />
               <StatRow label="FILES" value={filesViewed.toString()} />
               <StatRow label="DLS" value={filesDownloaded.toString()} />
-              <StatRow label="ZONES" value={`${foldersExplored.length}/${totalFolders || '?'}`} />
+              <StatRow label="VAULTS" value={`${foldersExplored.length}/${totalFolders || '?'}`} />
               <StatRow label="TIME" value={timeStr} />
             </div>
           </div>
