@@ -155,3 +155,79 @@ export function playError() {
 export function playFileOpen() {
   playTone(660, 0.08, 'square', 0.1);
 }
+
+export function playDusk(): void {
+  const ctx = getContext();
+  if (!ctx || !isSoundEnabled()) return;
+  const notes = [329.63, 293.66, 246.94, 196.00, 164.81];
+  notes.forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = 'triangle';
+    osc.frequency.value = freq;
+    const t = ctx.currentTime + i * 0.18;
+    gain.gain.setValueAtTime(0.18, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+    osc.start(t); osc.stop(t + 0.38);
+  });
+}
+
+export function playDawn(): void {
+  const ctx = getContext();
+  if (!ctx || !isSoundEnabled()) return;
+  const notes = [164.81, 196.00, 246.94, 293.66, 329.63];
+  notes.forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = 'square';
+    osc.frequency.value = freq;
+    const t = ctx.currentTime + i * 0.14;
+    gain.gain.setValueAtTime(0.15, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
+    osc.start(t); osc.stop(t + 0.3);
+  });
+}
+
+export function playExpectoPatronum(): void {
+  const ctx = getContext();
+  if (!ctx || !isSoundEnabled()) return;
+  for (let i = 0; i < 12; i++) {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = 440 * Math.pow(2, i / 12);
+    const t = ctx.currentTime + i * 0.05;
+    gain.gain.setValueAtTime(0.12, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+    osc.start(t); osc.stop(t + 0.55);
+  }
+}
+
+export function playThunder(): void {
+  const ctx = getContext();
+  if (!ctx || !isSoundEnabled()) return;
+  const bufferSize = ctx.sampleRate * 0.8;
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 2);
+  }
+  const source = ctx.createBufferSource();
+  source.buffer = buffer;
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.value = 180;
+  const gain = ctx.createGain();
+  gain.gain.value = 0.6;
+  source.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+  source.start();
+}
+
+export function playSnitchCatch(): void {
+  playLevelUp();
+  setTimeout(playCoin, 300);
+  setTimeout(playCoin, 550);
+}

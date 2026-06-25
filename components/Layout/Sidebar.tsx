@@ -48,7 +48,7 @@ export default function Sidebar({
         style={{
           width: '260px',
           background: 'var(--pixel-panel)',
-          borderRight: '4px solid var(--pixel-black)',
+          borderRight: '4px solid var(--pixel-shadow)',
           boxShadow: '4px 0 0 var(--pixel-shadow)',
         }}
       >
@@ -104,7 +104,7 @@ export default function Sidebar({
                       color: isActive
                         ? 'var(--pixel-yellow)'
                         : isExplored
-                        ? 'var(--pixel-black)'
+                        ? 'var(--text-primary)'
                         : 'var(--pixel-gray)',
                       background: isActive ? 'rgba(79, 195, 247, 0.15)' : undefined,
                     }}
@@ -155,7 +155,7 @@ function StatRow({ label, value, color }: { label: string; value: string; color?
   return (
     <div className="flex justify-between">
       <span className="text-[var(--pixel-gray)]">{label}</span>
-      <span style={{ color: color || 'var(--pixel-black)' }}>{value}</span>
+      <span style={{ color: color || 'var(--text-primary)' }}>{value}</span>
     </div>
   );
 }

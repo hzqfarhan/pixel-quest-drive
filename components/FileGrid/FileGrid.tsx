@@ -92,7 +92,7 @@ function SkeletonCard({ index }: { index: number }) {
       className="animate-stagger-in"
       style={{
         animationDelay: `${index * 50}ms`,
-        border: '4px solid var(--pixel-black)',
+        border: '4px solid var(--pixel-shadow)',
         boxShadow: '4px 4px 0 var(--pixel-shadow)',
         background: 'var(--pixel-panel)',
         padding: '12px',

@@ -21,6 +21,8 @@ import AchievementToast from '@/components/Modals/AchievementToast';
 import SearchSpellModal from '@/components/Modals/SearchSpellModal';
 import PixelSprite from '@/components/Pixel/PixelSprite';
 import PixelNotification from '@/components/Pixel/PixelNotification';
+import SkyLayer from '@/components/SkyLayer';
+import LivingEnvironment from '@/components/LivingEnvironment';
 
 const ROOT_FOLDER_ID = process.env.NEXT_PUBLIC_ROOT_FOLDER_ID || '';
 
@@ -59,6 +61,12 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
   const [currentFolderId, setCurrentFolderId] = useState(ROOT_FOLDER_ID);
+
+  // Sync theme to document element
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   const [folderStack, setFolderStack] = useState<{ id: string; name: string }[]>([
     { id: ROOT_FOLDER_ID, name: 'HOGWARTS VAULTS' },
   ]);
@@ -336,7 +344,7 @@ export default function HomePage() {
       >
         {/* Typing title */}
         <div className="mb-8 text-center">
-          <h1 className="text-[16px] sm:text-[20px] font-pixel text-[var(--pixel-black)] tracking-wider">
+          <h1 className="text-[16px] sm:text-[20px] font-pixel text-[var(--text-primary)] tracking-wider">
             {typedTitle}
             <span className="animate-blink text-[var(--pixel-yellow)]">▮</span>
           </h1>
@@ -376,47 +384,51 @@ export default function HomePage() {
   if (introPhase === 3 && loading) {
     return (
       <div
-        className="min-h-screen flex flex-col items-center justify-center gap-4"
+        className="min-h-screen flex flex-col items-center justify-center gap-6 relative overflow-hidden"
         style={{ background: 'var(--pixel-bg)' }}
       >
-        <PixelSprite playerClass={playerClass} size={48} walking />
-        <div className="text-[11px] font-pixel text-[var(--pixel-black)]">
+        <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundImage: "url('/assets/hp/hogwarts-night.png')", opacity: 0.15, backgroundSize: 'cover', backgroundPosition: 'center', imageRendering: 'pixelated' }} />
+        
+        {/* New Animated Logo */}
+        <div className="relative z-10 animate-bounce" style={{ animationDuration: '3s' }}>
+          <img src="/logo.png" alt="Hogwarts Drive Logo" width={128} height={128} style={{ imageRendering: 'pixelated', filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))' }} />
+        </div>
+
+        <div className="text-[12px] font-pixel text-[var(--text-primary)] tracking-widest z-10 animate-pulse">
           ENTERING VAULTS...
         </div>
+        
+        {/* Magical Progress Bar */}
         <div
-          className="w-48 h-4"
+          className="w-64 h-6 relative z-10"
           style={{
-            border: '3px solid var(--pixel-black)',
-            background: '#2a2a3e',
+            border: '4px solid var(--text-primary)',
+            background: '#1a1a2e',
+            boxShadow: '0 0 15px var(--pixel-purple)'
           }}
         >
           <div
-            className="h-full"
+            className="h-full relative overflow-hidden"
             style={{
-              background: 'var(--pixel-green)',
-              width: '60%',
-              animation: 'progress-stripe 0.5s linear infinite',
+              background: 'linear-gradient(90deg, var(--pixel-purple), var(--pixel-blue))',
+              width: '100%',
+              animation: 'progress-stripe 2s linear infinite',
               backgroundImage:
-                'repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(255,255,255,0.15) 6px, rgba(255,255,255,0.15) 8px)',
+                'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 20px)',
             }}
           />
         </div>
+
+        {/* Floating Snitch */}
+        <img src="/assets/hp/golden-snitch.png" className="absolute z-20" style={{ width: 32, top: '40%', right: '20%', animation: 'snitchDrift 3s ease-in-out infinite, snitchGlow 1.5s ease-in-out infinite alternate', objectFit: 'cover', objectPosition: 'left top' }} />
       </div>
     );
   }
 
   // Main app
-  const bgImage = theme === 'night' ? "url('/assets/hp/hogwarts-night.png')" : "url('/assets/hp/hogwarts-day.png')";
-
   return (
-    <div 
-      className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat transition-all duration-1000" 
-      style={{ 
-        backgroundImage: bgImage,
-        backgroundColor: 'var(--pixel-bg)',
-        imageRendering: 'pixelated'
-      }}
-    >
+    <LivingEnvironment>
+      <SkyLayer />
       {/* Level-up overlay */}
       {showLevelUp && (
         <div
@@ -449,7 +461,7 @@ export default function HomePage() {
 
       {/* Mobile hamburger */}
       <button
-        className="lg:hidden fixed bottom-4 left-4 z-50 px-btn bg-[var(--pixel-blue)] text-[var(--pixel-black)] p-3 text-lg"
+        className="lg:hidden fixed bottom-4 left-4 z-50 px-btn bg-[var(--pixel-blue)] text-[var(--text-primary)] p-3 text-lg"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         📜
@@ -472,7 +484,7 @@ export default function HomePage() {
           <div
             className="px-4 py-2 flex items-center gap-1 flex-wrap"
             style={{
-              borderBottom: '3px solid var(--pixel-black)',
+              borderBottom: '3px solid var(--pixel-shadow)',
               background: 'var(--pixel-panel)',
             }}
           >
@@ -545,6 +557,6 @@ export default function HomePage() {
 
       {/* Achievement toasts */}
       <AchievementToast />
-    </div>
+    </LivingEnvironment>
   );
 }

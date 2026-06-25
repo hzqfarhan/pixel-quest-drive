@@ -56,15 +56,15 @@ export default function SearchSpellModal({
         <div
           className="flex items-center gap-2 px-4 py-3"
           style={{
-            borderBottom: '4px solid var(--pixel-black)',
+            borderBottom: '4px solid var(--pixel-shadow)',
             background: 'var(--pixel-purple)',
           }}
         >
           <span className="text-2xl">🔮</span>
-          <span className="text-[11px] font-pixel text-[var(--pixel-black)] font-bold">
+          <span className="text-[11px] font-pixel text-[var(--text-primary)] font-bold">
             SEARCH SPELL
           </span>
-          <span className="text-[8px] font-pixel text-[var(--pixel-black)] opacity-70 ml-auto">
+          <span className="text-[8px] font-pixel text-[var(--text-primary)] opacity-70 ml-auto">
             -5 MP
           </span>
           <button
@@ -109,7 +109,7 @@ export default function SearchSpellModal({
                 onClick={() => handleSelect(file)}
                 className="w-full text-left px-3 py-2 mb-1 flex items-center gap-2 hover:bg-[var(--pixel-blue)]/10 transition-colors"
                 style={{
-                  border: '2px solid var(--pixel-black)',
+                  border: '2px solid var(--pixel-shadow)',
                 }}
               >
                 <span className="text-lg">{typeInfo.emoji}</span>

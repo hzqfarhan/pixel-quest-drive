@@ -17,6 +17,58 @@
   --pixel-bg: #FFFFF0;
   --pixel-panel: #FFF8E7;
   --pixel-border-width: 4px;
+  --panel-border: #c8b870;
+  --panel-border-inner: #e8d890;
+  --torch-glow: transparent;
+  --sky-filter: brightness(1) saturate(1);
+  --text-primary: #1a1a2e;
+  --text-secondary: #5a4a20;
+  --hp-bar-bg: #8B0000;
+  --xp-bar-bg: #4a3a00;
+  --mana-bar-bg: #003a6a;
+  --transition-theme: background-color 1.2s ease, color 0.8s ease,
+                      border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* ===== NIGHT MODE OVERRIDES ===== */
+[data-theme="night"] {
+  --pixel-bg: #0d0d1a;
+  --pixel-panel: #16162a;
+  --pixel-white: #c8c8e8;
+  --pixel-shadow: #000033;
+  --panel-border: #3a3a6e;
+  --panel-border-inner: #2a2a4a;
+  --text-primary: #e8e8f8;
+  --text-secondary: #9090c0;
+  --torch-glow: rgba(255, 140, 20, 0.22);
+  --sky-filter: brightness(0.85) saturate(0.7);
+  --text-primary: #e8e8f8;
+  --text-secondary: #9090c0;
+  --hp-bar-bg: #5a0000;
+  --xp-bar-bg: #2a2000;
+  --mana-bar-bg: #001a3a;
+}
+
+/* ===== APPLY TRANSITIONS TO KEY ELEMENTS ===== */
+body, .px-panel, .px-topbar, .px-file-card, .px-modal {
+  transition: var(--transition-theme);
+}
+
+[data-theme="night"] .px-panel {
+  position: relative;
+  box-shadow: inset 0 0 20px var(--torch-glow), 0 4px 0 var(--pixel-shadow);
+}
+[data-theme="night"] .px-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 32px var(--torch-glow);
+  animation: torchFlicker 2.8s ease-in-out infinite alternate;
+  border-radius: inherit;
+}
+@keyframes torchFlicker {
+  0% { opacity: 0.5; } 30% { opacity: 0.9; } 60% { opacity: 0.6; } 80% { opacity: 1.0; } 100% { opacity: 0.65; }
 }
 
 /* ── Global Reset ── */
@@ -44,12 +96,12 @@ body {
 
 ::-webkit-scrollbar-track {
   background: var(--pixel-black);
-  border: 2px solid var(--pixel-black);
+  border: 2px solid var(--pixel-shadow);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--pixel-yellow);
-  border: 2px solid var(--pixel-black);
+  border: 2px solid var(--pixel-shadow);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -62,13 +114,13 @@ body {
 
 /* ── Pixel Border Utility ── */
 .px-border {
-  border: var(--pixel-border-width) solid var(--pixel-black);
+  border: var(--pixel-border-width) solid var(--pixel-shadow);
   box-shadow: 4px 4px 0px var(--pixel-shadow);
 }
 
 /* ── Pixel Button ── */
 .px-btn {
-  border: var(--pixel-border-width) solid var(--pixel-black);
+  border: var(--pixel-border-width) solid var(--pixel-shadow);
   box-shadow: 4px 4px 0px var(--pixel-shadow);
   transition: transform 0.05s, box-shadow 0.05s;
   cursor: pointer;
@@ -96,7 +148,7 @@ body {
 
 /* ── Pixel Card ── */
 .px-card {
-  border: var(--pixel-border-width) solid var(--pixel-black);
+  border: var(--pixel-border-width) solid var(--pixel-shadow);
   box-shadow: 4px 4px 0px var(--pixel-shadow);
   background: var(--pixel-panel);
   transition: transform 0.1s, box-shadow 0.1s;
@@ -109,14 +161,14 @@ body {
 
 /* ── Pixel Panel ── */
 .px-panel {
-  border: var(--pixel-border-width) solid var(--pixel-black);
+  border: var(--pixel-border-width) solid var(--pixel-shadow);
   box-shadow: 4px 4px 0px var(--pixel-shadow);
   background: var(--pixel-panel);
 }
 
 /* ── Pixel Input ── */
 .px-input {
-  border: 3px solid var(--pixel-black);
+  border: 3px solid var(--pixel-shadow);
   box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1);
   background: #fff;
   padding: 8px 12px;
@@ -317,3 +369,89 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Broom Fly ── */
+@keyframes broomFly {
+  0%   { transform: translateX(-80px)  translateY(0px); }
+  20%  { transform: translateX(20vw)   translateY(-14px); }
+  40%  { transform: translateX(42vw)   translateY(8px); }
+  60%  { transform: translateX(63vw)   translateY(-10px); }
+  80%  { transform: translateX(85vw)   translateY(5px); }
+  100% { transform: translateX(110vw)  translateY(-2px); }
+}
+
+/* ── Sprite Sheet Walker ── */
+@keyframes spriteWalk {
+  from { background-position-x: 0px; }
+  to   { background-position-x: -128px; }
+}
+
+/* ── Snitch ── */
+@keyframes snitchDrift {
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  25%  { transform: translate(30px, -20px) rotate(15deg); }
+  50%  { transform: translate(-20px, 15px) rotate(-10deg); }
+  75%  { transform: translate(15px, 25px) rotate(8deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+@keyframes snitchGlow {
+  from { filter: drop-shadow(0 0 4px #FFD700) drop-shadow(0 0 8px rgba(255,215,0,0.5)); }
+  to   { filter: drop-shadow(0 0 10px #FFD700) drop-shadow(0 0 20px rgba(255,215,0,0.8)); }
+}
+
+/* ── Dementor ── */
+@keyframes dementorApproach {
+  0%   { transform: translateX(0px) translateY(0px) scale(0.6); opacity: 0; }
+  5%   { opacity: 0.8; }
+  100% { transform: translateX(60vw) translateY(40px) scale(1.3); opacity: 0.9; }
+}
+
+/* ── Dragon ── */
+@keyframes dragonFly {
+  0%   { transform: translateX(-100px) translateY(0px) scale(0.8); }
+  50%  { transform: translateX(55vw) translateY(-30px) scale(1); }
+  100% { transform: translateX(115vw) translateY(10px) scale(0.9); }
+}
+
+/* ── Floating Candles ── */
+@keyframes candleFloat {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-8px); }
+}
+
+/* ── Particles ── */
+@keyframes particleDrift {
+  0%   { transform: translateY(0px) rotate(0deg);   opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 0.6; }
+  100% { transform: translateY(-80vh) rotate(360deg); opacity: 0; }
+}
+
+/* ── Cloud Drift ── */
+@keyframes cloudDrift {
+  from { transform: translateX(-200px); }
+  to   { transform: translateX(110vw); }
+}
+
+/* Trunk Breathing */
+@keyframes trunkBreathe {
+  0%, 100% { transform: translateY(0px);  filter: brightness(1) drop-shadow(2px 4px 0 #000); }
+  50%       { transform: translateY(-3px); filter: brightness(1.06) drop-shadow(2px 6px 0 #000); }
+}
+.px-trunk:not(:hover) {
+  animation: trunkBreathe 4s ease-in-out infinite;
+}
+.px-trunk:nth-child(1)  { animation-delay: 0.0s; }
+.px-trunk:nth-child(2)  { animation-delay: 0.3s; }
+.px-trunk:nth-child(3)  { animation-delay: 0.6s; }
+.px-trunk:nth-child(4)  { animation-delay: 0.9s; }
+.px-trunk:nth-child(5)  { animation-delay: 1.2s; }
+.px-trunk:nth-child(6)  { animation-delay: 1.5s; }
+.px-trunk:nth-child(7)  { animation-delay: 1.8s; }
+.px-trunk:nth-child(8)  { animation-delay: 2.1s; }
+[data-theme="night"] .px-trunk:hover {
+  filter: brightness(1.1) drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+}
+
+@keyframes fogDrift { from { background-position-x: 0; } to { background-position-x: 400px; } }
+@keyframes rainFall { from { background-position: 0 0; } to { background-position: 64px 64px; } }

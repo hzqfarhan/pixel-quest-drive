@@ -63,9 +63,20 @@ interface GameState {
   newLevel: number;
   theme: 'day' | 'night';
 
+  // SkyLayer Flags
+  snitchLastCaught: number | null;
+  dementorActive: boolean;
+  dragonLastSeen: number | null;
+  weatherActive: boolean;
+  nightFirstToggled: boolean;
+
   // Actions
   initialize: () => void;
   setTheme: (theme: 'day' | 'night') => void;
+  setSnitchCaught: (timestamp: number) => void;
+  setDementorActive: (active: boolean) => void;
+  setDragonSeen: (timestamp: number) => void;
+  setNightFirstToggled: () => void;
   gainXP: (amount: number, coins?: number, message?: string) => void;
   spendMP: (amount: number) => boolean;
   restoreMP: (amount: number) => void;
@@ -119,6 +130,11 @@ export const useGameStore = create<GameState>()(
       showLevelUp: false,
       newLevel: 1,
       theme: 'day',
+      snitchLastCaught: null,
+      dementorActive: false,
+      dragonLastSeen: null,
+      weatherActive: false,
+      nightFirstToggled: false,
 
       initialize: () => {
         const state = get();
@@ -131,6 +147,19 @@ export const useGameStore = create<GameState>()(
         } else {
           set({ sessionStartTime: Date.now() });
         }
+      },
+
+      setSnitchCaught: (timestamp: number) => {
+        set({ snitchLastCaught: timestamp });
+      },
+      setDementorActive: (active: boolean) => {
+        set({ dementorActive: active });
+      },
+      setDragonSeen: (timestamp: number) => {
+        set({ dragonLastSeen: timestamp });
+      },
+      setNightFirstToggled: () => {
+        set({ nightFirstToggled: true });
       },
 
       gainXP: (amount: number, coinReward: number = 0, message?: string) => {
@@ -383,6 +412,11 @@ export const useGameStore = create<GameState>()(
         achievements: state.achievements,
         initialized: state.initialized,
         theme: state.theme,
+        snitchLastCaught: state.snitchLastCaught,
+        dementorActive: state.dementorActive,
+        dragonLastSeen: state.dragonLastSeen,
+        weatherActive: state.weatherActive,
+        nightFirstToggled: state.nightFirstToggled,
       }),
     }
   )

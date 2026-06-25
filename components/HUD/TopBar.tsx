@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/store/useGameStore';
+import { triggerThemeTransition } from '@/lib/theme-transitions';
 import { getRankTitle, getClassColor } from '@/lib/gamification';
 import { isSoundEnabled, setSoundEnabled } from '@/lib/pixel-audio';
 import PixelProgressBar from '@/components/Pixel/PixelProgressBar';
@@ -64,7 +65,7 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
       className="sticky top-0 z-50 px-border"
       style={{
         background: 'var(--pixel-panel)',
-        borderBottom: '4px solid var(--pixel-black)',
+        borderBottom: '4px solid var(--pixel-shadow)',
         boxShadow: '0 4px 0 var(--pixel-shadow)',
       }}
     >
@@ -73,7 +74,7 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
         <div className="flex items-center gap-2 min-w-0">
           <PixelSprite playerClass={playerClass} size={28} />
           <div className="hidden sm:block">
-            <div className="text-[10px] font-pixel text-[var(--pixel-black)] flex items-center gap-1">
+            <div className="text-[10px] font-pixel text-[var(--text-primary)] flex items-center gap-1">
               <span className="hidden md:inline">HOGWARTS</span>
               <span className="text-[var(--pixel-yellow)]">DRIVE</span>
               <span className="animate-blink text-[var(--pixel-yellow)]">▮</span>
@@ -92,10 +93,10 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
         <div
           className={`px-2 py-1 text-[9px] font-pixel font-bold ${nearLevelUp ? 'animate-pulse-glow' : ''}`}
           style={{
-            border: '3px solid var(--pixel-black)',
+            border: '3px solid var(--pixel-shadow)',
             background: nearLevelUp ? 'var(--pixel-yellow)' : 'var(--pixel-panel)',
             boxShadow: '2px 2px 0 var(--pixel-shadow)',
-            color: 'var(--pixel-black)',
+            color: 'var(--text-primary)',
           }}
         >
           LV.{level}
@@ -129,7 +130,27 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
         <div className="flex items-center gap-1 ml-auto">
           {/* Theme toggle */}
           <button
-            onClick={() => setTheme(theme === 'day' ? 'night' : 'day')}
+            onClick={async () => {
+              const newMode = theme === 'day' ? 'night' : 'day';
+              
+              // Trigger cinematic transition
+              await triggerThemeTransition(newMode === 'night');
+              
+              // Apply theme
+              document.documentElement.setAttribute('data-theme', newMode);
+              setTheme(newMode);
+              
+              // Play audio
+              if (newMode === 'night') {
+                import('@/lib/pixel-audio').then(m => m.playDusk());
+                useGameStore.getState().setNightFirstToggled();
+              } else {
+                import('@/lib/pixel-audio').then(m => m.playDawn());
+              }
+              
+              // Award exploration points
+              useGameStore.getState().gainXP(5, 0, 'TIME MAGE (+5 PTS)');
+            }}
             className="px-btn bg-[var(--pixel-panel)] px-2 py-1 text-[10px]"
             title={theme === 'day' ? 'Switch to Night' : 'Switch to Day'}
           >

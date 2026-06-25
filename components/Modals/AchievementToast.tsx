@@ -39,7 +39,7 @@ export default function AchievementToast() {
           <div className="text-[8px] font-pixel text-[var(--pixel-yellow)] animate-blink mb-0.5">
             ★ ACHIEVEMENT UNLOCKED ★
           </div>
-          <div className="text-[10px] font-pixel font-bold text-[var(--pixel-black)]">
+          <div className="text-[10px] font-pixel font-bold text-[var(--text-primary)]">
             {current.name}
           </div>
           <div className="text-[7px] font-pixel text-[var(--pixel-gray)]">

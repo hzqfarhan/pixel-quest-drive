@@ -32,7 +32,7 @@ export default function PixelProgressBar({
         className="flex-1 relative"
         style={{
           height: `${height}px`,
-          border: '3px solid var(--pixel-black)',
+          border: '3px solid var(--pixel-shadow)',
           background: '#2a2a3e',
         }}
       >

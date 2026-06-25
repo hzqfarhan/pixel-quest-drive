@@ -39,7 +39,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
         className="w-full aspect-square flex items-center justify-center overflow-hidden"
         style={{
           background: 'rgba(0,0,0,0.03)',
-          border: '2px solid var(--pixel-black)',
+          border: '2px solid var(--pixel-shadow)',
         }}
       >
         {file.thumbnailLink ? (
@@ -59,7 +59,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
       <div
         className="text-[8px] font-pixel leading-tight truncate"
         title={file.name}
-        style={{ color: 'var(--pixel-black)' }}
+        style={{ color: 'var(--text-primary)' }}
       >
         {file.name}
       </div>
@@ -78,7 +78,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
       {/* Action buttons */}
       <div className="flex gap-1 mt-auto">
         <button
-          className="px-btn flex-1 bg-[var(--pixel-blue)] text-[var(--pixel-black)] px-1 py-1 text-[7px] font-pixel flex items-center justify-center gap-1"
+          className="px-btn flex-1 bg-[var(--pixel-blue)] text-[var(--text-primary)] px-1 py-1 text-[7px] font-pixel flex items-center justify-center gap-1"
           onClick={(e) => {
             e.stopPropagation();
             onPreview(file);
@@ -87,7 +87,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
           👁 VIEW
         </button>
         <button
-          className="px-btn flex-1 bg-[var(--pixel-orange)] text-[var(--pixel-black)] px-1 py-1 text-[7px] font-pixel flex items-center justify-center gap-1"
+          className="px-btn flex-1 bg-[var(--pixel-orange)] text-[var(--text-primary)] px-1 py-1 text-[7px] font-pixel flex items-center justify-center gap-1"
           onClick={(e) => {
             e.stopPropagation();
             onDownload(file);

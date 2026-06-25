@@ -38,7 +38,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
       <div
         className="relative w-full max-w-4xl max-h-[90vh] flex flex-col"
         style={{
-          border: '6px solid var(--pixel-black)',
+          border: '6px solid var(--pixel-shadow)',
           boxShadow: '8px 8px 0 var(--pixel-shadow)',
           background: 'var(--pixel-panel)',
         }}
@@ -48,13 +48,13 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
         <div
           className="flex items-center gap-2 px-4 py-2 shrink-0"
           style={{
-            borderBottom: '4px solid var(--pixel-black)',
+            borderBottom: '4px solid var(--pixel-shadow)',
             background: 'var(--pixel-bg)',
           }}
         >
           <span className="text-xl">{typeInfo.emoji}</span>
           <div className="flex-1 min-w-0">
-            <div className="text-[9px] font-pixel truncate text-[var(--pixel-black)]">
+            <div className="text-[9px] font-pixel truncate text-[var(--text-primary)]">
               {file.name}
             </div>
             <div className="text-[7px] font-pixel text-[var(--pixel-gray)]">
@@ -84,7 +84,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
               alt={file.name}
               className="max-w-full max-h-[70vh] object-contain"
               style={{
-                border: '3px solid var(--pixel-black)',
+                border: '3px solid var(--pixel-shadow)',
                 boxShadow: '4px 4px 0 var(--pixel-shadow)',
                 imageRendering: 'auto',
               }}
@@ -97,7 +97,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
                 src={getEmbedUrl(file.id)}
                 className="w-full aspect-video"
                 style={{
-                  border: '3px solid var(--pixel-black)',
+                  border: '3px solid var(--pixel-shadow)',
                   boxShadow: '4px 4px 0 var(--pixel-shadow)',
                 }}
                 allow="autoplay; encrypted-media"
@@ -115,7 +115,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
                   src={getEmbedUrl(file.id)}
                   className="w-full h-[80px]"
                   style={{
-                    border: '3px solid var(--pixel-black)',
+                    border: '3px solid var(--pixel-shadow)',
                   }}
                   allow="autoplay"
                 />
@@ -128,7 +128,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
               src={getEmbedUrl(file.id)}
               className="w-full h-[70vh]"
               style={{
-                border: '3px solid var(--pixel-black)',
+                border: '3px solid var(--pixel-shadow)',
                 boxShadow: '4px 4px 0 var(--pixel-shadow)',
               }}
             />
@@ -141,7 +141,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
               src={getDocsViewerUrl(file.id)}
               className="w-full h-[70vh]"
               style={{
-                border: '3px solid var(--pixel-black)',
+                border: '3px solid var(--pixel-shadow)',
                 boxShadow: '4px 4px 0 var(--pixel-shadow)',
               }}
             />
@@ -152,7 +152,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
               src={getEmbedUrl(file.id)}
               className="w-full h-[70vh]"
               style={{
-                border: '3px solid var(--pixel-black)',
+                border: '3px solid var(--pixel-shadow)',
                 boxShadow: '4px 4px 0 var(--pixel-shadow)',
                 background: '#1a1a2e',
               }}
@@ -162,7 +162,7 @@ export default function FilePreviewModal({ file, onClose, onDownload }: FilePrev
           {(category === 'unknown' || category === 'archive') && (
             <div className="flex flex-col items-center gap-4 py-8">
               <div className="text-6xl">{typeInfo.emoji}</div>
-              <div className="text-[11px] font-pixel text-[var(--pixel-black)]">
+              <div className="text-[11px] font-pixel text-[var(--text-primary)]">
                 {typeInfo.gameName}
               </div>
               <div className="text-[8px] font-pixel text-[var(--pixel-gray)] text-center">

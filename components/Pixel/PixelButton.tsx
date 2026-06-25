@@ -9,10 +9,10 @@ interface PixelButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const VARIANT_STYLES = {
-  primary: 'bg-[var(--pixel-blue)] text-[var(--pixel-black)]',
-  secondary: 'bg-[var(--pixel-panel)] text-[var(--pixel-black)]',
+  primary: 'bg-[var(--pixel-blue)] text-[var(--text-primary)]',
+  secondary: 'bg-[var(--pixel-panel)] text-[var(--text-primary)]',
   danger: 'bg-[var(--pixel-red)] text-white',
-  gold: 'bg-[var(--pixel-yellow)] text-[var(--pixel-black)]',
+  gold: 'bg-[var(--pixel-yellow)] text-[var(--text-primary)]',
   green: 'bg-[var(--pixel-green)] text-white',
 };
 

@@ -36,7 +36,7 @@ export default function PixelNotification({
         {xp && xp > 0 && <span>+{xp} XP </span>}
         {coins && coins > 0 && <span className="text-[var(--pixel-orange)]">+{coins} 🪙 </span>}
       </div>
-      <div className="text-[8px] text-[var(--pixel-black)]" style={{ textShadow: '1px 1px 0 rgba(255,255,255,0.5)' }}>
+      <div className="text-[8px] text-[var(--text-primary)]" style={{ textShadow: '1px 1px 0 rgba(255,255,255,0.5)' }}>
         {message}
       </div>
     </div>
