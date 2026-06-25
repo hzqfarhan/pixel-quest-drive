@@ -246,7 +246,7 @@ export default function HomePage() {
       playFileOpen();
 
       const category = getFileCategory(file.mimeType);
-      let reward = XP_REWARDS.VIEW_FILE;
+      let reward: { readonly xp: number; readonly coins: number; readonly message: string } = XP_REWARDS.VIEW_FILE;
       if (category === 'image') reward = XP_REWARDS.VIEW_IMAGE;
       if (category === 'video') {
         reward = XP_REWARDS.PLAY_VIDEO;
