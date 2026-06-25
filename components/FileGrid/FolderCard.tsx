@@ -13,6 +13,20 @@ interface FolderCardProps {
 export default function FolderCard({ folder, index, itemCount, onClick }: FolderCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
+  const chestTypes = [
+    'chest-bronze.png',
+    'chest-silver.png',
+    'chest-gold.png',
+    'chest-amethyst.png',
+    'chest-emerald.png',
+    'chest-ruby.png',
+    'chest-obsidian.png',
+    'hogwarts-trunk.png'
+  ];
+  // Simple deterministic hash based on folder ID
+  const hash = folder.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const chestImg = chestTypes[hash % chestTypes.length];
+
   return (
     <div
       className="px-card p-3 flex flex-col gap-2 cursor-pointer group relative transition-transform"
@@ -26,12 +40,12 @@ export default function FolderCard({ folder, index, itemCount, onClick }: Folder
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Hogwarts Trunk Image */}
+      {/* Hogwarts Trunk / Chest Image */}
       <div className="w-full aspect-square flex items-center justify-center relative">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/hp/hogwarts-trunk.png"
-          alt="Hogwarts Trunk"
+          src={`/assets/hp/${chestImg}`}
+          alt="Magical Chest"
           className="w-16 h-16 transition-transform duration-300"
           style={{ 
             imageRendering: 'pixelated',

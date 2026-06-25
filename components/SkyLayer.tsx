@@ -19,10 +19,10 @@ interface SkyEntity {
 // ── Broom Rider Config ────────────────────────────────────────────────────────
 
 const BROOM_CONFIGS = [
-  { delay: '0s',   duration: '18s', top: '14%', scale: 1.0,  direction: 'ltr' as const },
-  { delay: '8s',   duration: '24s', top: '22%', scale: 0.75, direction: 'rtl' as const },
-  { delay: '15s',  duration: '20s', top: '9%',  scale: 1.15, direction: 'ltr' as const },
-  { delay: '22s',  duration: '28s', top: '30%', scale: 0.6,  direction: 'rtl' as const },
+  { delay: '0s',   duration: '18s', top: '14%', scale: 1.0,  direction: 'ltr' as const, house: 'gryff' },
+  { delay: '8s',   duration: '24s', top: '22%', scale: 0.75, direction: 'rtl' as const, house: 'slyth' },
+  { delay: '15s',  duration: '20s', top: '9%',  scale: 1.15, direction: 'ltr' as const, house: 'raven' },
+  { delay: '22s',  duration: '28s', top: '30%', scale: 0.6,  direction: 'rtl' as const, house: 'huffl' },
 ];
 
 // ── Main Component ─────────────────────────────────────────────────────────────
@@ -178,7 +178,7 @@ export default function SkyLayer() {
         <BroomRider
           key={i}
           config={cfg}
-          src={`/assets/hp/broom-${houseKey}-${isNight ? 'night' : 'day'}.png`}
+          src={`/assets/hp/broom-${cfg.house}-${isNight ? 'night' : 'day'}.png`}
           isNight={isNight}
         />
       ))}
