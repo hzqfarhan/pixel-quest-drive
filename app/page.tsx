@@ -217,7 +217,7 @@ export default function HomePage() {
       } else {
         setFolderStack([
           ...folderStack,
-          { id: folder.id, name: 'name' in folder ? folder.name : folder.id },
+          { id: folder.id, name: folder.name },
         ]);
       }
 
