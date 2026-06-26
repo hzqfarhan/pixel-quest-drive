@@ -61,35 +61,21 @@ export default function LivingEnvironment({ children }: { children: React.ReactN
           zIndex: 0
         }}
       >
-        {isNight ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            src="/assets/hp/night-bg.mp4"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              filter: 'var(--sky-filter)',
-              imageRendering: 'pixelated'
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundImage: "url('/assets/hp/hogwarts-bg-day.png')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              imageRendering: 'pixelated',
-              filter: 'var(--sky-filter)',
-            }}
-          />
-        )}
+        <video
+          key={isNight ? 'night' : 'day'}
+          autoPlay
+          loop
+          muted
+          playsInline
+          src={isNight ? "/assets/hp/night-bg.mp4" : "/assets/hp/day-bg.mp4"}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            filter: 'var(--sky-filter)',
+            imageRendering: 'pixelated'
+          }}
+        />
       </div>
 
       {/* Lightning Flash overlay */}
