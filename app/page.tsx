@@ -551,6 +551,14 @@ export default function HomePage() {
 
       {/* Achievement toasts */}
       <AchievementToast />
+      
+      {/* Corner Decoration to cover logo */}
+      <img
+        src="/assets/hp/pngegg.png"
+        className="fixed bottom-0 right-0 z-[100] hidden md:block"
+        style={{ width: '180px', pointerEvents: 'none', imageRendering: 'pixelated' }}
+        alt=""
+      />
       </div>
     </LivingEnvironment>
   );
