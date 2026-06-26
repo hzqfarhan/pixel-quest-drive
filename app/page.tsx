@@ -131,10 +131,22 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [checkAchievements]);
 
+  // ── Polling for live Google Drive updates (10s) ──
+  useEffect(() => {
+    if (introPhase >= 4 && currentFolderId) {
+      const interval = setInterval(() => {
+        fetchFolder(currentFolderId, true); // silent fetch
+      }, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [introPhase, currentFolderId, fetchFolder]);
+
   // ── FETCH FOLDER ──
-  const fetchFolder = useCallback(async (folderId: string) => {
-    setLoading(true);
-    setError(undefined);
+  const fetchFolder = useCallback(async (folderId: string, silent = false) => {
+    if (!silent) {
+      setLoading(true);
+      setError(undefined);
+    }
     try {
       const res = await fetch(`/api/drive/files?folderId=${folderId}`);
       const data = await res.json();
@@ -153,12 +165,12 @@ export default function HomePage() {
         setTotalFolders(folderCount);
       }
 
-      setIntroPhase(4);
+      if (!silent) setIntroPhase(4);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error');
-      setIntroPhase(4);
+      if (!silent) setError(err instanceof Error ? err.message : 'Unknown error');
+      if (!silent) setIntroPhase(4);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   }, [setTotalFolders]);
 
