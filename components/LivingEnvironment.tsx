@@ -44,7 +44,7 @@ export default function LivingEnvironment({ children }: { children: React.ReactN
     return () => clearInterval(interval);
   }, [weatherActive]);
 
-  const bgImage = isNight ? "url('/assets/hp/hogwarts-night.png')" : "url('/assets/hp/hogwarts-day.png')";
+  const bgImage = isNight ? "url('/assets/hp/hogwarts-bg-night.png')" : "url('/assets/hp/hogwarts-bg-day.png')";
 
   return (
     <div 

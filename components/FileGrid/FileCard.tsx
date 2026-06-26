@@ -16,6 +16,42 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
   const typeInfo = getFileTypeInfo(file.mimeType);
   const rarity = getFileRarity(file.mimeType, file.size);
   const rarityInfo = getRarityInfo(file.mimeType, file.size);
+  const isGif = file.mimeType === 'image/gif';
+
+  if (isGif) {
+    return (
+      <div
+        className="relative flex flex-col items-center justify-center cursor-pointer group hover:-translate-y-2 transition-transform duration-300"
+        style={{ animationDelay: `${index * 30}ms` }}
+        onClick={() => onPreview(file)}
+      >
+        <div className="w-full aspect-square flex items-center justify-center">
+          <img
+            src={`https://drive.google.com/uc?export=view&id=${file.id}`}
+            alt={file.name}
+            className="w-full h-full object-contain"
+            style={{ 
+              imageRendering: 'pixelated', 
+              filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' 
+            }}
+          />
+        </div>
+        {/* Name underneath, no border */}
+        <div
+          className="text-[8px] font-pixel text-center mt-2 truncate w-full px-2"
+          style={{ color: 'var(--text-primary)', textShadow: '2px 2px 0 var(--pixel-black)' }}
+        >
+          {file.name}
+        </div>
+        {/* Hover XP preview */}
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          <span className="text-[8px] font-pixel font-bold text-[var(--pixel-yellow)]" style={{ textShadow: '1px 1px 0 var(--pixel-black)' }}>
+            +30 XP
+          </span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

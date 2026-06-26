@@ -29,7 +29,7 @@ async function generateImage(pixellab, prompt, filename, width = 512, height = 5
 }
 
 async function main() {
-  const pixellab = new PixelLabClient({ apiKey: 'fb7eae32-6540-4d16-b879-ba8473fedae3' });
+  const pixellab = new PixelLabClient({ apiKey: '257ba98f-5183-4f15-ba22-38e4df55a31d' });
   
   // Wait 10 seconds between requests to avoid 429
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));

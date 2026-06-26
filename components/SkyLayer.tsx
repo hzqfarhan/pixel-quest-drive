@@ -169,9 +169,33 @@ export default function SkyLayer() {
           backgroundImage: "url('/assets/hp/clouds-day.png')",
           imageRendering: 'pixelated',
           animation: 'cloudDrift 40s linear infinite',
-          opacity: 0.8
+          opacity: 0.8,
+          zIndex: 1
         }} />
       )}
+
+      {/* Foreground Castle Layer */}
+      <div 
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '120%',
+          minWidth: '800px',
+          maxWidth: '1200px',
+          height: '60%',
+          backgroundImage: "url('/assets/hp/castle-transparent.png')",
+          backgroundSize: 'contain',
+          backgroundPosition: 'bottom center',
+          backgroundRepeat: 'no-repeat',
+          imageRendering: 'pixelated',
+          zIndex: 15, // Higher than Brooms (5) and Dragons (5)
+          pointerEvents: 'none',
+          filter: isNight ? 'brightness(0.5) sepia(0.3) hue-rotate(180deg) contrast(1.2)' : 'brightness(1.05) contrast(1.1)',
+          transition: 'filter 1s ease',
+        }} 
+      />
 
       {/* Broom Riders */}
       {BROOM_CONFIGS.map((cfg, i) => (
