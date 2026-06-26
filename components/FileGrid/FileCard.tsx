@@ -120,7 +120,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
             onPreview(file);
           }}
         >
-          👁 VIEW
+          VIEW
         </button>
         <button
           className="flex-1 glass-btn text-white px-1 py-2 text-[7px] font-pixel flex items-center justify-center gap-1 transition-all duration-300 hover:scale-105"
@@ -130,7 +130,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
             onDownload(file);
           }}
         >
-          ⬇ GET
+          GET
         </button>
       </div>
 

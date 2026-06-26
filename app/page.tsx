@@ -302,7 +302,9 @@ export default function HomePage() {
       const a = document.createElement('a');
       a.href = url;
       a.download = file.name;
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
     },
     [gainXP, recordDownload]
   );
