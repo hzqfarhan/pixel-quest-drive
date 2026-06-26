@@ -370,6 +370,17 @@ body {
   }
 }
 
+/* ── Responsive Entity Scaling ── */
+.responsive-entity-scale {
+  --entity-scale: var(--desktop-scale, 1);
+}
+
+@media (max-width: 768px) {
+  .responsive-entity-scale {
+    --entity-scale: calc(var(--desktop-scale, 1) * 0.4);
+  }
+}
+
 /* ── Broom Fly ── */
 @keyframes broomFly {
   0%   { transform: translateX(-80px)  translateY(0px); }

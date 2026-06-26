@@ -217,6 +217,7 @@ function BroomRider({ config, src, isNight }: {
   const isRTL = config.direction === 'rtl';
   return (
     <div
+      className="px-mobile-anim"
       style={{
         position: 'absolute',
         top: config.top,
@@ -224,19 +225,24 @@ function BroomRider({ config, src, isNight }: {
         right: isRTL ? 0 : 'auto',
         width: '32px',
         height: '32px',
-        animation: `broomFly${isRTL ? 'RTL' : ''} ${config.duration} ${config.delay} linear infinite`,
+        '--anim-duration': config.duration,
+        animation: `broomFly${isRTL ? 'RTL' : ''} var(--anim-duration) ${config.delay} linear infinite`,
         filter: isNight
           ? `drop-shadow(0 0 5px #FFD700) drop-shadow(0 0 10px rgba(255,215,0,0.4))`
           : 'drop-shadow(1px 2px 1px rgba(0,0,0,0.4))',
         imageRendering: 'pixelated',
-      }}
+        zIndex: 5,
+      } as React.CSSProperties}
     >
-      <div style={{
-        width: '100%', height: '100%',
-        transform: `scale(${config.scale}) ${isRTL ? 'scaleX(-1)' : ''}`,
-        transformOrigin: 'center center',
-      }}>
-        {/* Sprite sheet animation via background-position cycling */}
+      <div 
+        className="responsive-entity-scale"
+        style={{
+          width: '100%', height: '100%',
+          '--desktop-scale': config.scale,
+          transform: `scale(var(--entity-scale, ${config.scale})) ${isRTL ? 'scaleX(-1)' : ''}`,
+          transformOrigin: 'center center',
+        } as React.CSSProperties}
+      >
         <BroomSprite src={src} />
       </div>
     </div>
@@ -266,6 +272,7 @@ function BroomSprite({ src }: { src: string }) {
 function OwlEntity({ src, onClick, isNight }: { src: string; onClick: () => void; isNight: boolean }) {
   return (
     <img onError={(e) => (e.currentTarget.style.display = 'none')}
+      className="px-mobile-anim"
       src={src}
       onClick={onClick}
       style={{
@@ -277,9 +284,10 @@ function OwlEntity({ src, onClick, isNight }: { src: string; onClick: () => void
         imageRendering: 'pixelated',
         pointerEvents: 'auto',
         cursor: 'pointer',
-        animation: 'dragonFly 25s linear infinite 12s',
+        '--anim-duration': '25s',
+        animation: 'dragonFly var(--anim-duration) linear infinite 12s',
         filter: isNight ? 'brightness(0.8)' : 'drop-shadow(0 4px 4px rgba(0,0,0,0.2))'
-      }}
+      } as React.CSSProperties}
     />
   );
 }
@@ -319,6 +327,7 @@ function DementorEntity({ src, onClick }: { src: string; onClick: () => void }) 
   return (
     <img
       id="dementor-entity"
+      className="px-mobile-anim"
       src={src}
       onError={(e) => (e.currentTarget.style.display = 'none')}
       onClick={onClick}
@@ -333,10 +342,11 @@ function DementorEntity({ src, onClick }: { src: string; onClick: () => void }) 
         imageRendering: 'pixelated',
         pointerEvents: 'auto',
         cursor: 'crosshair',
-        animation: 'dementorApproach 40s linear infinite 5s',
+        '--anim-duration': '40s',
+        animation: 'dementorApproach var(--anim-duration) linear infinite 5s',
         filter: 'brightness(0.7) contrast(1.2)',
         zIndex: 8,
-      }}
+      } as React.CSSProperties}
     />
   );
 }
@@ -355,6 +365,7 @@ function DragonEntity({ src, isNight }: { src: string; isNight: boolean }) {
   if (!visible) return null;
   return (
     <img
+      className="px-mobile-anim"
       src={src}
       onError={(e) => (e.currentTarget.style.display = 'none')}
       onAnimationEnd={() => setVisible(false)}
@@ -368,12 +379,13 @@ function DragonEntity({ src, isNight }: { src: string; isNight: boolean }) {
         objectPosition: 'left top',
         imageRendering: 'pixelated',
         pointerEvents: 'none',
-        animation: 'dragonFly 12s linear forwards',
+        '--anim-duration': '12s',
+        animation: 'dragonFly var(--anim-duration) linear forwards',
         filter: isNight
           ? 'drop-shadow(0 0 8px rgba(255, 100, 0, 0.6))'
           : 'drop-shadow(2px 3px 2px rgba(0,0,0,0.5))',
         zIndex: 5,
-      }}
+      } as React.CSSProperties}
     />
   );
 }
