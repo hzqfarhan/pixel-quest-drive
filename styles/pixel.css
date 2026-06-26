@@ -6,7 +6,7 @@
 :root {
   --pixel-white: #FFFFF0;
   --pixel-black: #1a1a2e;
-  --pixel-yellow: #FFD700;
+  --pixel-yellow: #996515;
   --pixel-green: #4CAF50;
   --pixel-blue: #0D47A1;
   --pixel-red: #FF5252;
@@ -42,6 +42,7 @@
   --text-secondary: #FFD700;
   --torch-glow: rgba(255, 140, 20, 0.3);
   --sky-filter: brightness(0.85) saturate(0.7);
+  --pixel-yellow: #FFD700;
   --pixel-blue: #4FC3F7;
   --pixel-purple: #CE93D8;
   --hp-bar-bg: #5a0000;
