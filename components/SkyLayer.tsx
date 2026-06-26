@@ -19,10 +19,11 @@ interface SkyEntity {
 // ── Broom Rider Config ────────────────────────────────────────────────────────
 
 const BROOM_CONFIGS = [
-  { delay: '0s',   duration: '18s', top: '14%', scale: 3.5,  direction: 'ltr' as const, house: 'gryff' },
-  { delay: '8s',   duration: '24s', top: '22%', scale: 2.5, direction: 'rtl' as const, house: 'slyth' },
-  { delay: '15s',  duration: '20s', top: '9%',  scale: 4.0, direction: 'ltr' as const, house: 'raven' },
-  { delay: '22s',  duration: '28s', top: '30%', scale: 2.0,  direction: 'rtl' as const, house: 'huffl' },
+  { delay: '0s',   duration: '18s', top: '15%', scale: 3.5,  direction: 'ltr' as const, house: 'gryff' },
+  { delay: '8s',   duration: '24s', top: '35%', scale: 2.5, direction: 'rtl' as const, house: 'slyth' },
+  { delay: '15s',  duration: '20s', top: '55%', scale: 4.0, direction: 'ltr' as const, house: 'raven' },
+  { delay: '22s',  duration: '28s', top: '75%', scale: 2.0,  direction: 'rtl' as const, house: 'huffl' },
+  { delay: '5s',   duration: '22s', top: '85%', scale: 3.0,  direction: 'ltr' as const, house: 'gryff' },
 ];
 
 // ── Main Component ─────────────────────────────────────────────────────────────
@@ -140,7 +141,6 @@ export default function SkyLayer() {
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 1,
         pointerEvents: 'none',
         overflow: 'hidden',
       }}
@@ -200,10 +200,11 @@ export default function SkyLayer() {
       {/* Broom Riders */}
       {BROOM_CONFIGS.map((cfg, i) => (
         <BroomRider
-          key={i}
+          key={`broom-${i}`}
           config={cfg}
-          src={`/assets/hp/broom-${cfg.house}-${isNight ? 'night' : 'day'}.png`}
+          src={getBroomSprite(cfg.house, isNight)}
           isNight={isNight}
+          zIndex={20}
         />
       ))}
 
@@ -235,8 +236,8 @@ export default function SkyLayer() {
 
 // ── BroomRider ────────────────────────────────────────────────────────────────
 
-function BroomRider({ config, src, isNight }: {
-  config: typeof BROOM_CONFIGS[0]; src: string; isNight: boolean;
+function BroomRider({ config, src, isNight, zIndex = 5 }: {
+  config: typeof BROOM_CONFIGS[0]; src: string; isNight: boolean; zIndex?: number;
 }) {
   const isRTL = config.direction === 'rtl';
   return (
@@ -255,7 +256,7 @@ function BroomRider({ config, src, isNight }: {
           ? `drop-shadow(0 0 5px #FFD700) drop-shadow(0 0 10px rgba(255,215,0,0.4))`
           : 'drop-shadow(1px 2px 1px rgba(0,0,0,0.4))',
         imageRendering: 'pixelated',
-        zIndex: 5,
+        zIndex: zIndex,
       } as React.CSSProperties}
     >
       <div 

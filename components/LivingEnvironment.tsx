@@ -44,8 +44,6 @@ export default function LivingEnvironment({ children }: { children: React.ReactN
     return () => clearInterval(interval);
   }, [weatherActive]);
 
-  const bgImage = isNight ? "url('/assets/hp/hogwarts-bg-night.png')" : "url('/assets/hp/hogwarts-bg-day.png')";
-
   return (
     <div 
       className="min-h-screen flex flex-col relative overflow-hidden transition-all duration-1000"
@@ -58,17 +56,41 @@ export default function LivingEnvironment({ children }: { children: React.ReactN
         style={{
           position: 'absolute',
           inset: '-20px', // bleed for parallax
-          backgroundImage: bgImage,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          imageRendering: 'pixelated',
-          filter: 'var(--sky-filter)',
           transform: `translate(${mousePos.x}px, ${mousePos.y}px)`,
-          transition: 'transform 0.1s ease-out, background-image 1s ease',
+          transition: 'transform 0.1s ease-out',
           zIndex: 0
         }}
-      />
+      >
+        {isNight ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            src="/assets/hp/night-bg.mp4"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              filter: 'var(--sky-filter)',
+              imageRendering: 'pixelated'
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundImage: "url('/assets/hp/hogwarts-bg-day.png')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              imageRendering: 'pixelated',
+              filter: 'var(--sky-filter)',
+            }}
+          />
+        )}
+      </div>
 
       {/* Lightning Flash overlay */}
       {flash && (

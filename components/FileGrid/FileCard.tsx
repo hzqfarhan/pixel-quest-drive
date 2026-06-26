@@ -27,7 +27,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
       >
         <div className="w-full aspect-square flex items-center justify-center">
           <img
-            src={`https://drive.google.com/uc?export=view&id=${file.id}`}
+            src="/assets/hp/kicau-mania.gif"
             alt={file.name}
             className="w-full h-full object-contain"
             style={{ 

@@ -347,97 +347,82 @@ export default function HomePage() {
   );
 
   // ── RENDER ──
-
-  // Intro screens
-  if (introPhase < 3) {
-    return (
-      <div
-        className="min-h-screen flex flex-col items-center justify-center"
-        style={{ background: 'var(--pixel-bg)' }}
-      >
-        {/* Typing title */}
-        <div className="mb-8 text-center">
-          <h1 className="text-[16px] sm:text-[20px] font-pixel text-[var(--text-primary)] tracking-wider">
-            {typedTitle}
-            <span className="animate-blink text-[var(--pixel-yellow)]">▮</span>
-          </h1>
-        </div>
-
-        {/* Class assignment */}
-        {introPhase >= 1 && (
-          <div className="animate-stagger-in flex flex-col items-center gap-3">
-            <PixelSprite playerClass={playerClass} size={64} walking />
-            <div className="text-[10px] font-pixel text-[var(--pixel-purple)]">
-              THE SORTING HAT HAS DECIDED:
-            </div>
-            <div
-              className="text-[14px] font-pixel font-bold px-panel px-4 py-2"
-              style={{ color: 'var(--pixel-yellow)' }}
-            >
-              ⚔ {playerClass} ⚔
-            </div>
-          </div>
-        )}
-
-        {/* XP notification */}
-        {introPhase >= 2 && (
-          <div className="mt-6">
-            <PixelNotification
-              message="ADVENTURE BEGINS!"
-              xp={50}
-              coins={5}
-            />
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  // Loading screen
-  if (introPhase === 3 && loading) {
-    return (
-      <div
-        className="min-h-screen flex flex-col items-center justify-center gap-6 relative overflow-hidden"
-        style={{ background: 'var(--pixel-bg)' }}
-      >
-        <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundImage: "url('/assets/hp/hogwarts-night.png')", opacity: 0.15, backgroundSize: 'cover', backgroundPosition: 'center', imageRendering: 'pixelated' }} />
-        
-
-        <div className="text-[12px] font-pixel text-[var(--text-primary)] tracking-widest z-10 animate-pulse">
-          ENTERING VAULTS...
-        </div>
-        
-        {/* Magical Progress Bar */}
-        <div
-          className="w-64 h-6 relative z-10"
-          style={{
-            border: '4px solid var(--text-primary)',
-            background: '#1a1a2e',
-            boxShadow: '0 0 15px var(--pixel-purple)'
-          }}
-        >
-          <div
-            className="h-full relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(90deg, var(--pixel-purple), var(--pixel-blue))',
-              width: '100%',
-              animation: 'progress-stripe 2s linear infinite',
-              backgroundImage:
-                'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 20px)',
-            }}
-          />
-        </div>
-
-        {/* Floating Snitch */}
-        <img src="/assets/hp/golden-snitch.png" className="absolute z-20" style={{ width: 32, top: '40%', right: '20%', animation: 'snitchDrift 3s ease-in-out infinite, snitchGlow 1.5s ease-in-out infinite alternate', objectFit: 'cover', objectPosition: 'left top' }} />
-      </div>
-    );
-  }
-
-  // Main app
   return (
     <LivingEnvironment>
       <SkyLayer />
+
+      {/* ── SPLASH SCREEN (Phases 0-2) ── */}
+      {introPhase < 3 && (
+        <div className="absolute inset-0 z-[100] flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm pointer-events-auto transition-opacity duration-1000">
+          {/* Typing title */}
+          <div className="mb-8 text-center">
+            <h1 className="text-[16px] sm:text-[20px] font-pixel text-white tracking-wider drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+              {typedTitle}
+              <span className="animate-blink text-[var(--pixel-yellow)]">▮</span>
+            </h1>
+          </div>
+
+          {/* Class assignment */}
+          {introPhase >= 1 && (
+            <div className="animate-stagger-in flex flex-col items-center gap-3">
+              <PixelSprite playerClass={playerClass} size={64} walking />
+              <div className="text-[10px] font-pixel text-[var(--pixel-yellow)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                THE SORTING HAT HAS DECIDED:
+              </div>
+              <div
+                className="text-[14px] font-pixel font-bold px-panel px-4 py-2"
+                style={{ color: 'var(--pixel-yellow)' }}
+              >
+                ⚔ {playerClass} ⚔
+              </div>
+            </div>
+          )}
+
+          {/* XP notification */}
+          {introPhase >= 2 && (
+            <div className="mt-6">
+              <PixelNotification message="ADVENTURE BEGINS!" xp={50} coins={5} />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── LOADING SCREEN (Phase 3) ── */}
+      {introPhase === 3 && loading && (
+        <div className="absolute inset-0 z-[100] flex flex-col items-center justify-center gap-6 bg-black/40 backdrop-blur-sm pointer-events-auto transition-opacity duration-1000">
+          <div className="text-[12px] font-pixel text-white tracking-widest z-10 animate-pulse drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            ENTERING VAULTS...
+          </div>
+          
+          {/* Magical Progress Bar */}
+          <div
+            className="w-64 h-6 relative z-10"
+            style={{
+              border: '4px solid white',
+              background: '#1a1a2e',
+              boxShadow: '0 0 15px var(--pixel-purple)'
+            }}
+          >
+            <div
+              className="h-full relative overflow-hidden"
+              style={{
+                background: 'linear-gradient(90deg, var(--pixel-purple), var(--pixel-blue))',
+                width: '100%',
+                animation: 'progress-stripe 2s linear infinite',
+                backgroundImage:
+                  'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 20px)',
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* ── MAIN APP UI (Phase 4+) ── */}
+      <div 
+        className={`absolute inset-0 flex flex-col z-10 transition-opacity duration-1000 ${
+          introPhase >= 4 ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
       {/* Level-up overlay */}
       {showLevelUp && (
         <div
@@ -566,6 +551,7 @@ export default function HomePage() {
 
       {/* Achievement toasts */}
       <AchievementToast />
+      </div>
     </LivingEnvironment>
   );
 }
