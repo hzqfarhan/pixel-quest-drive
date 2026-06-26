@@ -202,7 +202,7 @@ export default function SkyLayer() {
         <BroomRider
           key={`broom-${i}`}
           config={cfg}
-          src={getBroomSprite(cfg.house, isNight)}
+          src={`/assets/hp/broom-${cfg.house}-${isNight ? 'night' : 'day'}.png`}
           isNight={isNight}
           zIndex={20}
         />
