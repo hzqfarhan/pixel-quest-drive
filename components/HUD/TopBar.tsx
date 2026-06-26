@@ -62,7 +62,7 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
 
   return (
     <header
-      className="sticky top-0 z-50 px-border"
+      className="sticky top-0 z-50 px-border backdrop-blur-md"
       style={{
         background: 'var(--pixel-panel)',
         borderBottom: '4px solid var(--pixel-shadow)',

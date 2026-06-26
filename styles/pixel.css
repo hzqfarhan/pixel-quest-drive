@@ -13,16 +13,16 @@
   --pixel-purple: #CE93D8;
   --pixel-gray: #B0BEC5;
   --pixel-orange: #FFB74D;
-  --pixel-shadow: #000000;
+  --pixel-shadow: rgba(0, 0, 0, 0.4);
   --pixel-bg: #FFFFF0;
-  --pixel-panel: #FFF8E7;
-  --pixel-border-width: 4px;
-  --panel-border: #c8b870;
-  --panel-border-inner: #e8d890;
+  --pixel-panel: rgba(255, 248, 231, 0.55);
+  --pixel-border-width: 3px;
+  --panel-border: rgba(200, 184, 112, 0.5);
+  --panel-border-inner: rgba(232, 216, 144, 0.5);
   --torch-glow: transparent;
   --sky-filter: brightness(1) saturate(1);
-  --text-primary: #1a1a2e;
-  --text-secondary: #5a4a20;
+  --text-primary: #000000;
+  --text-secondary: #000000;
   --hp-bar-bg: #8B0000;
   --xp-bar-bg: #4a3a00;
   --mana-bar-bg: #003a6a;
@@ -33,17 +33,15 @@
 /* ===== NIGHT MODE OVERRIDES ===== */
 [data-theme="night"] {
   --pixel-bg: #0d0d1a;
-  --pixel-panel: #16162a;
-  --pixel-white: #c8c8e8;
-  --pixel-shadow: #000033;
-  --panel-border: #3a3a6e;
-  --panel-border-inner: #2a2a4a;
-  --text-primary: #e8e8f8;
-  --text-secondary: #9090c0;
-  --torch-glow: rgba(255, 140, 20, 0.22);
+  --pixel-panel: rgba(22, 22, 42, 0.65);
+  --pixel-white: #ffffff;
+  --pixel-shadow: rgba(0, 0, 31, 0.7);
+  --panel-border: rgba(58, 58, 110, 0.6);
+  --panel-border-inner: rgba(42, 42, 74, 0.6);
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFD700;
+  --torch-glow: rgba(255, 140, 20, 0.3);
   --sky-filter: brightness(0.85) saturate(0.7);
-  --text-primary: #e8e8f8;
-  --text-secondary: #9090c0;
   --hp-bar-bg: #5a0000;
   --xp-bar-bg: #2a2000;
   --mana-bar-bg: #001a3a;
@@ -169,6 +167,8 @@ body {
   border: var(--pixel-border-width) solid var(--pixel-shadow);
   box-shadow: 4px 4px 0px var(--pixel-shadow);
   background: var(--pixel-panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
@@ -182,6 +182,8 @@ body {
   border: var(--pixel-border-width) solid var(--pixel-shadow);
   box-shadow: 4px 4px 0px var(--pixel-shadow);
   background: var(--pixel-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* ── Pixel Input ── */

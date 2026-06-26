@@ -476,7 +476,7 @@ export default function HomePage() {
         <main className="flex-1 overflow-y-auto">
           {/* Breadcrumbs */}
           <div
-            className="px-4 py-2 flex items-center gap-1 flex-wrap"
+            className="px-4 py-2 flex items-center gap-1 flex-wrap backdrop-blur-md"
             style={{
               borderBottom: '3px solid var(--pixel-shadow)',
               background: 'var(--pixel-panel)',
