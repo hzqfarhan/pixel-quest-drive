@@ -563,7 +563,7 @@ export default function HomePage() {
       {/* Corner Decoration to cover logo */}
       <img
         src="/assets/hp/hogwarts-logo.png"
-        className="fixed bottom-2 right-2 z-[100] hidden md:block"
+        className="fixed bottom-2 right-16 z-[100] hidden md:block"
         style={{ width: '120px', pointerEvents: 'none', imageRendering: 'pixelated', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }}
         alt="Logo Cover"
       />
