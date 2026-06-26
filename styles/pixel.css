@@ -135,8 +135,26 @@ body {
 }
 
 .px-btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px var(--pixel-shadow);
+  transform: translateY(2px) scale(0.98);
+}
+
+/* ── Liquid Glass Buttons ── */
+.glass-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-radius: 4px; /* Slight rounding for a liquid look */
+}
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.glass-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .px-btn:disabled {

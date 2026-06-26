@@ -477,7 +477,7 @@ export default function HomePage() {
       </button>
 
       {/* Main layout */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative z-10 pointer-events-auto">
         {/* Sidebar */}
         <Sidebar
           folderTree={folderTree}

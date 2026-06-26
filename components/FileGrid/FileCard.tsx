@@ -114,7 +114,7 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
       {/* Action buttons */}
       <div className="flex gap-1 mt-auto">
         <button
-          className="px-btn flex-1 bg-[var(--pixel-blue)] text-[var(--text-primary)] px-1 py-1 text-[7px] font-pixel flex items-center justify-center gap-1"
+          className="flex-1 glass-btn text-white px-1 py-2 text-[7px] font-pixel flex items-center justify-center gap-1 transition-all duration-300 hover:scale-105"
           onClick={(e) => {
             e.stopPropagation();
             onPreview(file);
@@ -123,7 +123,8 @@ export default function FileCard({ file, index, onPreview, onDownload }: FileCar
           👁 VIEW
         </button>
         <button
-          className="px-btn flex-1 bg-[var(--pixel-orange)] text-[var(--text-primary)] px-1 py-1 text-[7px] font-pixel flex items-center justify-center gap-1"
+          className="flex-1 glass-btn text-white px-1 py-2 text-[7px] font-pixel flex items-center justify-center gap-1 transition-all duration-300 hover:scale-105"
+          style={{ background: 'rgba(255, 180, 0, 0.2)' }}
           onClick={(e) => {
             e.stopPropagation();
             onDownload(file);
