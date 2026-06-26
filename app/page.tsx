@@ -131,16 +131,6 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [checkAchievements]);
 
-  // ── Polling for live Google Drive updates (10s) ──
-  useEffect(() => {
-    if (introPhase >= 4 && currentFolderId) {
-      const interval = setInterval(() => {
-        fetchFolder(currentFolderId, true); // silent fetch
-      }, 10000);
-      return () => clearInterval(interval);
-    }
-  }, [introPhase, currentFolderId, fetchFolder]);
-
   // ── FETCH FOLDER ──
   const fetchFolder = useCallback(async (folderId: string, silent = false) => {
     if (!silent) {
@@ -173,6 +163,17 @@ export default function HomePage() {
       if (!silent) setLoading(false);
     }
   }, [setTotalFolders]);
+
+  // ── Polling for live Google Drive updates (10s) ──
+  useEffect(() => {
+    if (introPhase >= 4 && currentFolderId) {
+      const interval = setInterval(() => {
+        fetchFolder(currentFolderId, true); // silent fetch
+      }, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [introPhase, currentFolderId, fetchFolder]);
+
 
   // ── BUILD FOLDER TREE (recursive) ──
   const fetchFolderTree = useCallback(
