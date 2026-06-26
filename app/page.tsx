@@ -354,6 +354,14 @@ export default function HomePage() {
       {/* ── SPLASH SCREEN (Phases 0-2) ── */}
       {introPhase < 3 && (
         <div className="absolute inset-0 z-[100] flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm pointer-events-auto transition-opacity duration-1000">
+          {/* Logo */}
+          <img 
+            src="/assets/hp/hogwarts-logo.png" 
+            alt="Hogwarts Drive Logo" 
+            className="w-32 h-32 mb-6 animate-float"
+            style={{ imageRendering: 'pixelated', filter: 'drop-shadow(0 0 15px rgba(255,215,0,0.4))' }}
+          />
+
           {/* Typing title */}
           <div className="mb-8 text-center">
             <h1 className="text-[16px] sm:text-[20px] font-pixel text-white tracking-wider drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
@@ -554,10 +562,10 @@ export default function HomePage() {
       
       {/* Corner Decoration to cover logo */}
       <img
-        src="/assets/hp/pngegg.png"
-        className="fixed bottom-0 right-0 z-[100] hidden md:block"
-        style={{ width: '180px', pointerEvents: 'none', imageRendering: 'pixelated' }}
-        alt=""
+        src="/assets/hp/hogwarts-logo.png"
+        className="fixed bottom-2 right-2 z-[100] hidden md:block"
+        style={{ width: '120px', pointerEvents: 'none', imageRendering: 'pixelated', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }}
+        alt="Logo Cover"
       />
       </div>
     </LivingEnvironment>

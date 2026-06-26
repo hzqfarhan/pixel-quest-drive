@@ -72,6 +72,7 @@ export default function TopBar({ onSearchClick }: TopBarProps) {
       <div className="flex items-center gap-3 px-3 py-2 flex-wrap">
         {/* Logo + Sprite */}
         <div className="flex items-center gap-2 min-w-0">
+          <img src="/assets/hp/hogwarts-logo.png" className="w-8 h-8 drop-shadow-md" alt="Logo" style={{ imageRendering: 'pixelated' }} />
           <PixelSprite playerClass={playerClass} size={28} />
           <div className="hidden sm:block">
             <div className="text-[10px] font-pixel text-[var(--text-primary)] flex items-center gap-1">
